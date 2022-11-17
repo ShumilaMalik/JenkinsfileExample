@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+                sh '''
+                file="myfolder"
+                if [ -d "$file" ] ; then
+                rm -d -r "$file"
+                fi
+                ls
+                mkdir myfolder
+                cd myfolder
+                mkdir myfolder2
+                ls
+                touch first.txt
+                ls
+                rm first.txt
+                '''
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        
+        
+    }
+}
